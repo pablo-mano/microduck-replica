@@ -111,15 +111,15 @@ Servo output shafts, metal-to-metal joints recommend medium-strength thread lock
 
 | Part | Print How Many |
 |---|---|
-| `leg_腿部` | **×4** |
-| `hip_l_髋部左` | ×2 |
-| `neck_颈部` | ×2 |
-| `power_support_电源支架` | ×2 |
-| `sole_left_左脚底` | ×2 |
-| `sole_right_右脚底` | ×2 |
-| `upper_leg_rigidity_plate_上腿加固板` | ×2 |
-| `yaw2roll_偏航转横滚` | ×2 |
-| **`bearing_roll_横滚轴承压盖`** | **×2** ← See erratum below |
+| `leg` | **×4** |
+| `hip_l` | ×2 |
+| `neck` | ×2 |
+| `power_support` | ×2 |
+| `sole_left` | ×2 |
+| `sole_right` | ×2 |
+| `upper_leg_rigidity_plate` | ×2 |
+| `yaw2roll` | ×2 |
+| **`bearing_roll`** | **×2** ← See erratum below |
 | Other 21 types | 1 each |
 
 > ⚠️ **Erratum (2026-09-04)**: `bearing_roll` was previously categorized by this repo as "Standard Parts - No Print Needed", **this is wrong**.

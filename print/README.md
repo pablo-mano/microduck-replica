@@ -15,12 +15,11 @@ Every STL for the whole robot, split into **print these** and **buy these**, wit
 ## Filename convention
 
 ```
-upper_leg_left_左上腿.stl
-└─ upstream name ─┘└ zh ─┘
+upper_leg_left.stl
+└─ upstream name ─┘
 ```
 
-The first half is the original filename from `microduck_rl`, so it cross-references the MJCF and the
-source; the second half is Chinese, so a Chinese-speaking builder can tell what it is at a glance.
+Filenames match the original part names from `microduck_rl`, so they cross-reference with the MJCF and source code.
 
 ## Differences from upstream
 

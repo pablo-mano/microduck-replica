@@ -206,18 +206,18 @@ Derivation: [fastener reconstruction](docs/fastener-reconstruction.en.md).
 
 | Part | Print |
 |---|---|
-| `leg_腿部` | **×4** |
-| `hip_l_髋部左` | ×2 |
-| `neck_颈部` | ×2 |
-| `power_support_电源支架` | ×2 |
-| `sole_left_左脚底` | ×2 |
-| `sole_right_右脚底` | ×2 |
-| `upper_leg_rigidity_plate_上腿加固板` | ×2 |
-| `yaw2roll_偏航转横滚` | ×2 |
+| `leg` | **×4** |
+| `hip_l` | ×2 |
+| `neck` | ×2 |
+| `power_support` | ×2 |
+| `sole_left` | ×2 |
+| `sole_right` | ×2 |
+| `upper_leg_rigidity_plate` | ×2 |
+| `yaw2roll` | ×2 |
 | The other 21 types | ×1 each |
 
 **Flexible-material parts** (from naming and function — TPU suggested):
-`jaw_soft_软下巴`, `soft_mouth_top_软嘴顶部`
+`jaw_soft`, `soft_mouth_top`
 
 ⚠️ **Do not confuse left and right.** `upper_leg_left` and `upper_leg_right` are mirrored
 (centroids +0.067 / −0.067) — you need both. Same for `ankle_*`, `sole_*`, `foot_*`.
@@ -238,7 +238,7 @@ To reproduce the skating function, print **additionally** and substitute:
 ⚠️ **The skate ankles are 10 mm taller** than the standard ones (46.5 vs 36.5). The two sets are
 not interchangeable.
 
-See [`print/变体-轮滑/`](print/变体-轮滑/).
+See [`print/variant-roller-skating/`](print/variant-roller-skating/).
 
 ---
 
