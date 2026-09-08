@@ -120,16 +120,16 @@ and whether the derived numbers hold up on real parts.
 
 ## Exploded Assembly View
 
-![Exploded view](assembly-drawings/06_爆炸图_四分之三.png)
+![Exploded view](assembly-drawings/06_exploded-view_three-quarter.png)
 
 Seven drawings under `assembly-drawings/`:
 
 | File | Contents |
 |---|---|
-| `01_正面` `02_侧面` `03_背面` `04_四分之三` | Front / side / rear / isometric, assembled, natural colors |
-| **`05_爆炸图_侧面`** | 15 parts exploded along the kinematic chain, labeled with names and masses |
-| **`06_爆炸图_四分之三`** | Isometric — shows the left/right leg mirroring clearly |
-| `07_分色对照_装配态` | Assembled state in the same color coding, for cross-reference |
+| `01_front` `02_side` `03_rear` `04_three-quarter` | Front / side / rear / isometric, assembled, natural colors |
+| **`05_exploded-view_side`** | 15 parts exploded along the kinematic chain, labeled with names and masses |
+| **`06_exploded-view_three-quarter`** | Isometric — shows the left/right leg mirroring clearly |
+| `07_color-coded_assembled` | Assembled state in the same color coding, for cross-reference |
 
 ## Assembly Structure
 

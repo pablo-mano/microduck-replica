@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""从 STL 网格反推孔特征，用于还原紧固件清单。
+"""Reverse-engineer hole features from STL meshes for fastener inventory recovery.
 
-思路：CAD 导出的网格里，一个孔就是一片圆柱面。
-  1. 焊接顶点，建面片邻接图
-  2. 按二面角切割（锐边处断开），region-grow 出「光滑曲面片」
-  3. 每片拟合圆柱：法向都垂直于轴 -> 轴 = 法向协方差最小特征向量
-  4. 投影到垂直轴的平面上拟合圆 -> 直径
-  5. 法向朝向轴心 = 孔；背离轴心 = 轴/凸台
+Approach: In CAD-exported meshes, a hole is represented as a cylindrical surface.
+  1. Weld vertices, build face adjacency graph
+  2. Split by dihedral angle (break at sharp edges), region-grow "smooth surface patches"
+  3. Fit cylinder to each patch: normals perpendicular to axis -> axis = min eigenvector of normal covariance
+  4. Project onto plane perpendicular to axis, fit circle -> diameter
+  5. Normals pointing toward axis = hole; pointing away = shaft/boss
 
-用法:
-    python scripts/analyze_holes.py <assets 目录> [输出 json]
+Usage:
+    python scripts/analyze_holes.py <assets directory> [output json]
 """
 import sys, os, struct, json, glob
 import numpy as np
