@@ -6,8 +6,8 @@ Every STL for the whole robot, split into **print these** and **buy these**, wit
 
 | Directory | Count | What it is |
 |---|---|---|
-| [`打印件/`](打印件/) (print) | **37** | Structural parts you print yourself |
-| [`标准件-无需打印/`](标准件-无需打印/) (do not print) | **9** | Models of bought parts — servos, bearings, battery, PCBs. **For fit and interference checking only** |
+| [`printables/`](printables/) | **37** | Structural parts you print yourself |
+| [`commercial-parts/`](commercial-parts/) | **9** | Models of bought parts — servos, bearings, battery, PCBs. **For fit and interference checking only** |
 
 > These are **individual parts**, for printing.
 > For **assembly relationships** see [`../cad/`](../cad/) — 16 sub-assemblies merged along the kinematic tree.
