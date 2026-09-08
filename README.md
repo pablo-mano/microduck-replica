@@ -1,7 +1,5 @@
 # Microduck Replica
 
-**English** · [简体中文](README.md)
-
 > A third-party reconstruction study of [Pollen Robotics' Microduck](https://pollen-robotics.com/microduck/).
 > Assembly drawings, exploded views, CAD-importable assemblies, and a complete
 > electronics teardown — all derived from publicly released files and source code.
@@ -16,7 +14,7 @@ Its **software is open source (Apache-2.0)**. Its hardware is **partly** open:
 - ❌ **The `imu_to_dxl` board is not published** — no public project exists anywhere; the reconstruction
   in this repo is the only one available.
 - ❌ **No editable mechanical CAD**, no whole-robot BOM, no assembly documentation. Pollen Robotics
-  [told the press not to call it "open-source hardware" (for now)](docs/社区动态.md).
+  [told the press not to call it "open-source hardware" (for now)](docs/community-updates.md).
 
 > 📌 **Correction (2026-09-03)**: this document previously stated "its hardware is not [open], no PCB
 > schematics". **That was wrong** — it searched only `pollen-robotics/microduck` and missed the
@@ -36,7 +34,7 @@ This repository is what falls out of reading both.
 > ✅ **Independently verified.** On 2026-08-31, [@tspy](https://x.com/tspy/status/2094249218735300630)
 > published a hardware teardown on X (169 likes) that matches this repository's
 > conclusions exactly — including the critical one: **the main board is a Radxa Zero 3W**.
-> Two independent paths, one answer. See [Community Intelligence](docs/社区动态.md).
+> Two independent paths, one answer. See [Community Intelligence](docs/community-updates.md).
 
 ---
 
@@ -243,8 +241,8 @@ Dynamixel slave, so orientation arrives in the same bus transaction as the joint
 no second bus, no host-side sensor fusion (the LSM6DSV16X's on-chip SFLP block emits a game
 rotation quaternion and estimates its own gyro bias).
 
-**Full detail:** [Hardware Teardown](docs/hardware-teardown.en.md) (English) ·
-[Spec Sheet](docs/硬件规格速查.md) (Chinese)
+**Full detail:** [Hardware Teardown](docs/hardware-teardown.md) (English) ·
+[Spec Sheet](docs/hardware-spec.md)
 
 ---
 
@@ -318,14 +316,14 @@ what it is good for.
 
 | Document | Contents |
 |---|---|
-| [**Hardware Spec Sheet**](docs/硬件规格速查.md) | One-page reference — block diagram, part numbers, bus parameters, build list, pitfalls |
-| [**Hardware Primer**](docs/硬件入门.md) | **Board by board** — what each of the five modules does, how one 20 ms control tick flows, what changes on the Feetech route, and a closing section on **five checks to run before you replicate** |
-| [**Electronics Sourcing (CN)**](docs/电控采购清单.md) | Taobao links with verified availability — main board, camera, ToF, power, both PCBs, cabling and the debug adapter |
-| [**Mechanical Sourcing (CN)**](docs/机械采购清单.md) | Bearings, M2 fasteners, heat-set inserts and the insertion tip, thread locker, filament |
-| [**Hardware Teardown**](docs/hardware-teardown.en.md) 🇬🇧 | **Full derivation with evidence citations — the main board, both custom boards, bus protocol, sensors, power** |
+| [**Hardware Spec Sheet**](docs/hardware-spec.md) | One-page reference — block diagram, part numbers, bus parameters, build list, pitfalls |
+| [**Hardware Primer**](docs/hardware-primer.md) | **Board by board** — what each of the five modules does, how one 20 ms control tick flows, what changes on the Feetech route, and a closing section on **five checks to run before you replicate** |
+| [**Electronics Sourcing (CN)**](docs/electronics-sourcing.md) | Taobao links with verified availability — main board, camera, ToF, power, both PCBs, cabling and the debug adapter |
+| [**Mechanical Sourcing (CN)**](docs/mechanical-sourcing.md) | Bearings, M2 fasteners, heat-set inserts and the insertion tip, thread locker, filament |
+| [**Hardware Teardown**](docs/hardware-teardown.md) 🇬🇧 | **Full derivation with evidence citations — the main board, both custom boards, bus protocol, sensors, power** |
 | [**Actuator Selection**](docs/actuator-selection.en.md) 🇬🇧 | XL330 parameters, BAM M6 config, five calibrated PD sets, backlash modeling — plus **why closed-loop steppers do not work here, what swapping to a Feetech STS3215 actually costs** (737 g vs 2107 g, measured), and a **cross-comparison of same-class servos** including a deep assessment of the Unitree S288 |
-| [**Fastener Reconstruction**](docs/fastener-reconstruction.en.md) 🇬🇧 | Hole-feature scan across 47 STLs → M2 system and purchase quantities |
-| [Community Intelligence](docs/社区动态.md) | X / GitHub signals, independent verification, noise and scam warnings |
+| [**Fastener Reconstruction**](docs/fastener-reconstruction.md) 🇬🇧 | Hole-feature scan across 47 STLs → M2 system and purchase quantities |
+| [Community Intelligence](docs/community-updates.md) | X / GitHub signals, independent verification, noise and scam warnings |
 | [Progress](PROGRESS.md) | Status, decisions, open work |
 
 > 🇬🇧 marks documents available in English. The rest are Chinese-only for now — their

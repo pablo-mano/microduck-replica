@@ -1,7 +1,5 @@
 # 3D-Printable Parts
 
-[简体中文](README.md) · **English**
-
 Every STL for the whole robot, split into **print these** and **buy these**, with bilingual filenames.
 
 | Directory | Count | What it is |
@@ -33,7 +31,7 @@ bench_holder  weight  spacer  axis  arm  part_1 … part_5
 
 **One duplicate removed**: the same left upper leg ships upstream under two names
 (`upper_leg_left` and `left_upper_leg`), byte-for-byte identical. Only
-`upper_leg_left_左上腿.stl` is kept here.
+`upper_leg_left.stl` is kept here.
 
 > ⚠️ **Do not mistake `upper_leg_left` and `upper_leg_right` for the same part** — they are
 > different geometry. You need both.
@@ -49,7 +47,7 @@ A few things the geometry itself tells you:
 - **Leg structural parts** carry load — increase perimeters and infill
 - **`soft_mouth_top` / `jaw_soft`** are named *soft*; the originals are presumably a flexible
   material (TPU family)
-- **`tire_轮胎`** likewise — a roller-skating tyre printed in rigid filament will simply slip
+- **`tire`** likewise — a roller-skating tyre printed in rigid filament will simply slip
 - Use **heat-set inserts** for the M2 holes rather than tapping the plastic. Screw list:
   [`../docs/fastener-reconstruction.en.md`](../docs/fastener-reconstruction.en.md)
 

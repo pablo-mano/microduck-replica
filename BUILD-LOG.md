@@ -1,7 +1,5 @@
 # Build Log
 
-[简体中文](构建日志.md) · **English**
-
 > **Current status: 3D printing in progress**
 > Last updated: 2026-09-02　|　first photos below ↓
 

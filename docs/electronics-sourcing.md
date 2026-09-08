@@ -1,7 +1,7 @@
 # Electronics Sourcing List (Domestic China / Taobao)
 
 > **Snapshot date: 2026-09-04.** Prices and sales volumes change, links may expire, verify pricing before ordering.
-> Mechanical parts (bearings / fasteners / consumables) see [Mechanical Sourcing List](机械采购清单.md).
+> Mechanical parts (bearings / fasteners / consumables) see [Mechanical Sourcing](mechanical-sourcing.md). List](机械采购清单.md).
 >
 > This list doesn't include endorsements, only search result records. Shop information (sales, years) are displayed values at time of scraping.
 

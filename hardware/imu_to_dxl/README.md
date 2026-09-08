@@ -2,7 +2,7 @@
 
 > ⚠️ **This is a third-party replica, not an official design.**
 > The official design has never publicly released the schematic, Gerber files, or mechanical dimensions for this board (zero hits across the web, see
-> [Hardware Reverse Engineering](../../docs/硬件方案逆向.md)). This directory is the result of reverse engineering based on the MJCF model, official runtime source code,
+> [Hardware Reverse Engineering](../../docs/hardware-teardown.md)). This directory is the result of reverse engineering based on the MJCF model, official runtime source code,
 > and the open-source HAT project, combined with independent component selection. **This has not been fabricated or validated with physical hardware.**
 > Please open an [issue](https://github.com/fanhao375/microduck-replica/issues) if you find any problems.
 
@@ -141,9 +141,9 @@ Midpoint of two holes (22.67, 11.05) differs from board center (22.50, 11.00) by
 > so both holes were moved toward corners, X spacing changed to 40mm.
 > **Trade-off is no longer compatible with original latch — mechanical side needs synchronized pressure bar change.**
 > Anyway the inference in reverse engineering doc that "latch presses `imu_to_dxl`" was only speculation
-> (see [Hardware Reverse Engineering](../../docs/硬件方案逆向.md)), hard constraint is only "IMU rigidly connected to `trunk_base`".
+> (see [Hardware Reverse Engineering](../../docs/hardware-teardown.md)), hard constraint is only "IMU rigidly connected to `trunk_base`".
 
-Board outline file: `imu_to_dxl-板框-45x22-R2.dxf` (units mm, 8 segments closed: 4 straight edges + 4 90° arcs).
+Board outline file: `imu_to_dxl-board-outline-45x22-R2.dxf` (units mm, 8 segments closed: 4 straight edges + 4 90° arcs).
 
 > **Why separate DXF**: This version of JLCEDA Pro's primitive interface only accepts copper layers,
 > adding lines/arcs to board outline layer (layer 11) all report "parameter incorrect", changing layers/document sources are all blocked,
@@ -350,7 +350,7 @@ SPI×4, 2 interrupts, buffer's DE/TX/RX/DXL_DATA. Based on above magnitude estim
 or vibration noise is excessive, v2 change together.
 
 **A more important reminder**: IMU's position and orientation **in the robot** is fixed by trained model, much more important than 7mm offset on board. That's determined by how board mounts in trunk, already verified and recorded in
-[`docs/硬件方案逆向.md`](../../docs/硬件方案逆向.md): `trunk = [+raw_z, +raw_y, −raw_x]`,
+[`docs/hardware-teardown.md`](../../docs/hardware-teardown.md): `trunk = [+raw_z, +raw_y, −raw_x]`,
 +90° around Y axis. Moving position on board doesn't affect this.
 
 ### 2026-09-07 · Reserve Control Line for `2OE` (R7 + RX_EN)

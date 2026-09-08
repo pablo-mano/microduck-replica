@@ -1,7 +1,7 @@
 # Mechanical Sourcing List (Domestic China / Taobao)
 
 > **Snapshot date: 2026-09-04.** Prices and sales volumes change, links may expire, verify pricing before ordering.
-> Electronic/electrical components (main controller / camera / ToF / power / PCB / cables) see [Electronics Sourcing List](电控采购清单.md).
+> Electronic/electrical components (main controller / camera / ToF / power / PCB / cables) see [Electronics Sourcing List](electronics-sourcing.md).
 >
 > Quantities from MJCF `robot_walk.xml` mesh instance counts and hole feature reverse derivation, **derived values not official drawings**.
 
@@ -19,8 +19,8 @@ Quantity directly counted from `robot_walk.xml` mesh references, six MJCF varian
 
 | Shop | Description | Price | Link |
 |---|---|---|---|
-| **NBZH 永天轴承** (16-year shop) | Stainless steel ultra-thin wall `ET2216ZZ` / `MR16224` / `SET2216` / `DDA2216`, 16×22×4 | **¥2.2** | [taobao 539024647147](https://item.taobao.com/item.htm?id=539024647147) |
-| **鑫燚轴承** (7-year shop) | NSK miniature bearings, **same link has both 10×15×3 and 16×22×4** | **¥5** | [taobao 670727787832](https://item.taobao.com/item.htm?id=670727787832) |
+| **NBZH Yongtian Bearings** (16-year shop) | Stainless steel ultra-thin wall `ET2216ZZ` / `MR16224` / `SET2216` / `DDA2216`, 16×22×4 | **¥2.2** | [taobao 539024647147](https://item.taobao.com/item.htm?id=539024647147) |
+| **Xinyi Bearings** (7-year shop) | NSK miniature bearings, **same link has both 10×15×3 and 16×22×4** | **¥5** | [taobao 670727787832](https://item.taobao.com/item.htm?id=670727787832) |
 
 > 💡 The 鑫燚 link can buy both specs together in one order, convenient.
 
@@ -48,7 +48,7 @@ Below recommends 325 pieces, giving **1.37× margin** on 237 hole positions.
 | **M2 heat-set insert** | **60** | Recommended for prints, much stronger than direct tapping |
 | M2.5×6 | 20 | Few Ø2.7 hole positions |
 
-Derivation process see [Fastener Reverse Derivation](紧固件反推.md).
+Derivation process see [Fastener Reverse Derivation](fastener-reconstruction.md).
 
 ### Screw Kits
 
@@ -96,7 +96,7 @@ Servo output shafts, metal-to-metal joints recommend medium-strength thread lock
 | Material | Usage | Where Used |
 |---|---|---|
 | **PLA / PETG** | ~300–500 g | Most structural parts |
-| **TPU** | Small amount | `jaw_soft_软下巴`, `soft_mouth_top_软嘴顶部` — from naming and use recommend flexible material |
+| **TPU** | Small amount | `jaw_soft`, `soft_mouth_top` — from naming and use recommend flexible material |
 
 > Print process and tolerance evaluation not yet done, see [PROGRESS.md](../PROGRESS.md) risk list.
 > **Simulation STL ≠ printable engineering parts** — only guarantees exterior and inertia, no fit tolerances, threaded holes, heat-set insert seats.
@@ -139,9 +139,9 @@ Servo output shafts, metal-to-metal joints recommend medium-strength thread lock
 
 | Mesh | What Is It | How to Handle |
 |---|---|---|
-| `xl330` ×15 | Servos | See [Actuator Selection](执行器选型.md) |
-| `np_f970` | NP-F battery (**actually F550**) | See [Electronics Sourcing List](电控采购清单.md#five-power) |
-| `elec_rpi_robot_hat_pcb` | HAT circuit board | Fabricate, see [Electronics Sourcing List](电控采购清单.md#six-two-pcbs) |
+| `xl330` ×15 | Servos | See [Actuator Selection](actuator-selection.md) |
+| `np_f970` | NP-F battery (**actually F550**) | See [Electronics Sourcing List](electronics-sourcing.md#five-power) |
+| `elec_rpi_robot_hat_pcb` | HAT circuit board | Fabricate, see [Electronics Sourcing List](electronics-sourcing.md#six-two-pcbs) |
 | `pcb__raspberry_pi_zero_2_w` | Main controller placeholder | Buy Radxa Zero 3W |
 | `lens` / `m12_lens_holder` | Lens and lens holder | ⚠️ Both from same Onshape Part Studio,<br>this repo categorized `lens` as standard part, `m12_lens_holder` as printed part, **this classification is questionable**, awaiting physical verification |
 | `speaker` | Speaker | 5W, connects to HAT's Wago terminal |

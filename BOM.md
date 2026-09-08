@@ -1,9 +1,5 @@
 # Bill of Materials
 
-> ⚠️ **This English version lags behind the Chinese original.** Several corrections (camera rotation, MK1 part number, U10 placement, STS3032 torque basis, board SKU) were applied to the Chinese docs first. **When the two disagree, the Chinese version wins.** Last sync: 2026-09-05.
-
-[简体中文](BOM.md) · **English**
-
 Everything needed to build one Microduck. Quantities come from geom references in upstream
 `robot_walk.xml` (**38 mesh types / 75 instances**) — counted, not estimated.
 
@@ -230,9 +226,9 @@ To reproduce the skating function, print **additionally** and substitute:
 
 | Part | Qty |
 |---|---|
-| `tire_轮胎` | **×8** |
-| `rim_轮辋` | **×4** |
-| `roller_blade_滚轮叶片` | ×2 |
+| `tire` | **×8** |
+| `rim` | **×4** |
+| `roller_blade` | ×2 |
 | `ankle_l_v1` / `ankle_r_v1` | ×1 each (**replaces** the standard ankles) |
 
 ⚠️ **The skate ankles are 10 mm taller** than the standard ones (46.5 vs 36.5). The two sets are

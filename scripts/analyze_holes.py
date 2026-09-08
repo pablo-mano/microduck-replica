@@ -134,7 +134,7 @@ def main():
     out = sys.argv[2] if len(sys.argv) > 2 else "docs/hole_analysis.json"
     files = sorted(glob.glob(os.path.join(src, "*.stl")))
     if not files:
-        sys.exit("没找到 STL: " + src)
+        sys.exit("No STL files found: " + src)
     result = {}
     for f in files:
         name = os.path.basename(f)
