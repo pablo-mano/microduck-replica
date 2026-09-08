@@ -156,7 +156,7 @@ Board outline file: `imu_to_dxl-board-outline-45x22-R2.dxf` (units mm, 8 segment
 
 *Routing diagram, rendered from actual project data (top red / bottom blue / pads yellow / GND vias green / signal vias purple, blue background is bottom GND pour, purple box is `J4`/`J5`).*
 *Status 2026-09-08: 29 components · 227 trace segments · 31 vias · 172 teardrops, includes `R7`, `J4`, `J5`, `X1`/`R3`/`C9` changed to actual placement.*
-*⚠️ `.eprj2` / PDF / STEP in directory are still 09-06~09-07 version, pending re-export.*
+*This directory's `.eprj2` / PCB PDF / schematic PDF / STEP and `assets/` images **all updated to 2026-09-08 final version**.*
 
 **45 × 22mm, 2-layer board, 1 oz copper**, R2 rounded corners, two diagonal M2 non-plated holes.
 All SMD components on top; 3 through-hole connectors on two edges: `J1` `J2` (servo bus) on bottom edge,
@@ -232,7 +232,7 @@ cannot replace actual testing.
 - **Board-side connector model to be confirmed**: Feetech spec only states wire end is `AMP2.0-3P`, **board end model not given**.
   This board temporarily uses `B3B-PH-K-S` (JST PH, 2.0mm vertical). Pad array is three holes 2.0mm spacing,
   compatible with other 2.0mm series, **changing series later only changes footprint, not pads, no re-routing**
-- **`.eprj2` / PCB PDF / schematic PDF / STEP pending re-export** — these four files in directory still 09-06~09-07 version
+- **Before ordering, re-export production files** — components changed from 27 to 29; LCSC Gerber / BOM / placement must be re-uploaded
 
 ## Please Focus Review on These Areas
 
