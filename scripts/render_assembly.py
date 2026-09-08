@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""渲染 Microduck 的装配图 / 爆炸图。
+"""Render Microduck assembly drawings / exploded views.
 
-从 MJCF 直接渲染：4 张常规视图 + 2 张爆炸图 + 1 张分色对照图。
-爆炸图沿运动学链逐级偏移，越靠链末端炸得越远，并标注部件名称与质量。
+Render directly from MJCF: 4 standard views + 2 exploded views + 1 color-coded reference.
+Exploded views offset progressively along the kinematic chain, farther toward chain ends, with part name and mass annotations.
 
-用法:
-    python scripts/render_assembly.py <上游 microduck_rl 路径> [输出目录]
+Usage:
+    python scripts/render_assembly.py <upstream microduck_rl path> [output directory]
 """
 import sys, os
 import numpy as np
@@ -13,10 +13,10 @@ import mujoco
 from PIL import Image, ImageDraw, ImageFont
 
 MJCF = "src/mjlab_microduck/robot/microduck/robot_allcollisions.xml"
-STEP = 0.048          # 爆炸图每级偏移量 (m)
+STEP = 0.048          # Exploded view offset per level (m)
 W, H = 1600, 2100
 
-# 渲染需要更大的离屏帧缓冲和白色天空盒，注入到 MJCF 里
+# Rendering requires larger offscreen framebuffer and white skybox, injected into MJCF
 INJECT = """  <visual>
     <global offwidth="2200" offheight="2600" fovy="42"/>
     <quality shadowsize="4096" offsamples="8"/>
@@ -28,17 +28,17 @@ INJECT = """  <visual>
 """
 
 CN = {
-    'trunk_base':'躯干主体 199g','yaw2roll':'左髋 yaw-roll 23g','hip_l':'左髋 roll 件 6g',
-    'upper_leg_left':'左大腿 48g','leg':'左小腿 22g','ankle_left':'左踝+脚 30g',
-    'neck':'颈根 37g','neck_pitch':'颈俯仰件 6g','yaw_roll_motion':'头 yaw/roll 机构 49g',
-    'jaw_soft':'头部总成+喙 189g','bearing_roll':'右髋 yaw-roll 23g','hip_l_2':'右髋 roll 件 6g',
-    'upper_leg_right':'右大腿 48g','leg_2':'右小腿 22g','ankle_right':'右踝+脚 30g',
+    'trunk_base':'Trunk main body 199g','yaw2roll':'Left hip yaw-roll 23g','hip_l':'Left hip roll part 6g',
+    'upper_leg_left':'Left thigh 48g','leg':'Left shin 22g','ankle_left':'Left ankle+foot 30g',
+    'neck':'Neck base 37g','neck_pitch':'Neck pitch part 6g','yaw_roll_motion':'Head yaw/roll mechanism 49g',
+    'jaw_soft':'Head assembly+beak 189g','bearing_roll':'Right hip yaw-roll 23g','hip_l_2':'Right hip roll part 6g',
+    'upper_leg_right':'Right thigh 48g','leg_2':'Right shin 22g','ankle_right':'Right ankle+foot 30g',
 }
 PAL = [(214,69,65),(240,142,42),(232,196,45),(120,182,66),(48,160,120),(52,152,190),
        (60,105,190),(120,90,195),(190,80,175),(225,105,140),(150,110,70),(90,120,140),
        (200,160,90),(70,175,175),(175,175,60)]
 
-# Windows 用微软雅黑；其他平台自行替换成任一中文字体
+# Windows uses Microsoft YaHei; other platforms substitute any CJK font
 FONT_CANDIDATES = ["C:/Windows/Fonts/msyh.ttc",
                    "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
                    "/System/Library/Fonts/PingFang.ttc"]
@@ -67,7 +67,7 @@ def main():
 
     src = os.path.join(root, MJCF)
     if not os.path.exists(src):
-        sys.exit("找不到 MJCF: " + src + "\n请先运行 scripts/fetch_upstream.sh")
+        sys.exit("Cannot find MJCF: " + src + "\nPlease run scripts/fetch_upstream.sh first")
     tmp = os.path.join(os.path.dirname(src), "_render_tmp.xml")
     prepare_mjcf(src, tmp)
 
@@ -75,7 +75,7 @@ def main():
         m = mujoco.MjModel.from_xml_path(tmp)
         d = mujoco.MjData(m)
         d.qpos[:] = 0
-        d.qpos[3] = 1.0                            # 自由关节单位四元数 = 零位基准
+        d.qpos[3] = 1.0                            # Free joint unit quaternion = zero pose reference
         mujoco.mj_forward(m, d)
 
         names = [mujoco.mj_id2name(m, mujoco.mjtObj.mjOBJ_BODY, i) for i in range(m.nbody)]
@@ -97,13 +97,13 @@ def main():
 
         vopt = mujoco.MjvOption()
         vopt.geomgroup[:] = 0
-        vopt.geomgroup[2] = 1                      # 只渲染视觉网格
+        vopt.geomgroup[2] = 1                      # Only render visual meshes
         r = mujoco.Renderer(m, H, W)
         cam = mujoco.MjvCamera()
         font_path = find_font()
 
         def proj(p, fovy=42.0):
-            """世界坐标 -> 像素坐标，用于画标注引线。"""
+            """World coordinates -> pixel coordinates, for drawing annotation leader lines."""
             az, el = np.radians(cam.azimuth), np.radians(cam.elevation)
             fwd = np.array([np.cos(el)*np.cos(az), np.cos(el)*np.sin(az), np.sin(el)])
             cpos = np.array(cam.lookat) - cam.distance * fwd
@@ -159,7 +159,7 @@ def main():
                     if not (0 < x < W and 0 < y < H):
                         continue
                     tx, ty = x + 58, y - 20
-                    for (px, py) in placed:        # 简单避让，防止标签重叠
+                    for (px, py) in placed:        # Simple collision avoidance to prevent label overlap
                         if abs(py - ty) < 44 and abs(px - tx) < 430:
                             ty = py + 46
                     placed.append((tx, ty))
@@ -175,14 +175,14 @@ def main():
             img.save(os.path.join(out, fn + ".png"))
             print("  ok", fn)
 
-        for n, (az, el) in {'01_正面':(90,-5), '02_侧面':(0,-5),
-                            '03_背面':(270,-5), '04_四分之三':(40,-12)}.items():
+        for n, (az, el) in {'01_front':(90,-5), '02_side':(0,-5),
+                            '03_back':(270,-5), '04_three-quarter':(40,-12)}.items():
             shoot(n, az, el, False, n, 1.15, label=False)
 
         colorize()
-        shoot('05_爆炸图_侧面', 0, -6, True, 'Microduck 装配爆炸图 - 侧视（零位基准）')
-        shoot('06_爆炸图_四分之三', 42, -14, True, 'Microduck 装配爆炸图 - 立体（零位基准）')
-        shoot('07_分色对照_装配态', 42, -12, False, 'Microduck 分色对照 - 装配完成态', 1.15)
+        shoot('05_exploded_side', 0, -6, True, 'Microduck Assembly Exploded View - Side (Zero Pose)')
+        shoot('06_exploded_three-quarter', 42, -14, True, 'Microduck Assembly Exploded View - 3D (Zero Pose)')
+        shoot('07_color-coded_assembled', 42, -12, False, 'Microduck Color-Coded Reference - Assembled', 1.15)
         r.close()
     finally:
         if os.path.exists(tmp):
