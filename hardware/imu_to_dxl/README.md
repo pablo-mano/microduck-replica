@@ -6,11 +6,11 @@
 > and the open-source HAT project, combined with independent component selection. **This has not been fabricated or validated with physical hardware.**
 > Please open an [issue](https://github.com/fanhao375/microduck-replica/issues) if you find any problems.
 
-![imu_to_dxl Schematic](../../assets/hw/imu_to_dxl-原理图.png)
+![imu_to_dxl Schematic](../../assets/hw/imu_to_dxl-schematic.png)
 
 | File | Description |
 |---|---|
-| [`imu_to_dxl-原理图.pdf`](imu_to_dxl-原理图.pdf) | Vector PDF, zoom for details |
+| [`imu_to_dxl-schematic.pdf`](imu_to_dxl-schematic.pdf) | Vector PDF, zoom for details |
 | [`netlist.md`](netlist.md) | Network-by-network pin listing for direct verification |
 | [`imu_to_dxl.eprj2`](imu_to_dxl.eprj2) | JLCPCB EDA Pro project, can be opened and modified directly |
 | [`../../BOM.md`](../../BOM.md) | Complete BOM with LCSC part numbers and selection rationale for each component |
