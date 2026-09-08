@@ -190,9 +190,9 @@ Every individual STL, split into print-these and buy-these, bilingual filenames 
 robot is assembled. (The 47 upstream STLs are each in their own part coordinate frame;
 importing those directly piles every part at the origin.)
 
-- `00_Microduck_整机装配体.stl` — whole robot, single file, 796,792 triangles
+- `00_Microduck_full-assembly.stl` — whole robot, single file, 796,792 triangles
 - `01` … `15` — the 15 rigid bodies, filenames are part names
-- `零件对照表.json` — which upstream source meshes make up each body
+- `part-mapping.json` — which upstream source meshes make up each body
 
 Units are **millimeters**. Opens in FreeCAD, Fusion 360, SolidWorks, Blender, or any slicer.
 No CAD installed? `tools/stl_viewer.html` is a zero-install WebGL viewer — open it in a
