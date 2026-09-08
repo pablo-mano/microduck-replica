@@ -1,7 +1,7 @@
 {
-  "01_躯干主体": {
+  "01_trunk-main": {
     "body": "trunk_base",
-    "源STL": [
+    "source_STL": [
       "seeed_bearing__configuration__22x16x4",
       "right_shell",
       "banana_pcb_locker",
@@ -13,86 +13,86 @@
       "left_shell",
       "seeed_bearing__configuration__22x16x4"
     ],
-    "三角面": 131020
+    "triangles": 131020
   },
-  "02_左髋yaw-roll": {
+  "02_left-hip-yaw-roll": {
     "body": "yaw2roll",
-    "源STL": [
+    "source_STL": [
       "yaw2roll",
       "xl330",
       "seeed_bearing__configuration__22x16x4",
       "bearing_roll"
     ],
-    "三角面": 39920
+    "triangles": 39920
   },
-  "03_左髋roll": {
+  "03_left-hip-roll": {
     "body": "hip_l",
-    "源STL": [
+    "source_STL": [
       "seeed_bearing__configuration__22x16x4",
       "hip_l"
     ],
-    "三角面": 41940
+    "triangles": 41940
   },
-  "04_左大腿": {
+  "04_left-thigh": {
     "body": "upper_leg_left",
-    "源STL": [
+    "source_STL": [
       "upper_leg_left",
       "xl330",
       "upper_leg_rigidity_plate",
       "seeed_bearing__configuration__22x16x4",
       "xl330"
     ],
-    "三角面": 45072
+    "triangles": 45072
   },
-  "05_左小腿": {
+  "05_left-shin": {
     "body": "leg",
-    "源STL": [
+    "source_STL": [
       "leg",
       "xl330"
     ],
-    "三角面": 18902
+    "triangles": 18902
   },
-  "06_左踝脚": {
+  "06_left-ankle-foot": {
     "body": "ankle_left",
-    "源STL": [
+    "source_STL": [
       "sole_left",
       "foot_left",
       "seeed_bearing__configuration_default",
       "ankle_left"
     ],
-    "三角面": 61658
+    "triangles": 61658
   },
-  "07_颈根": {
+  "07_neck-base": {
     "body": "neck",
-    "源STL": [
+    "source_STL": [
       "neck",
       "xl330",
       "xl330",
       "neck"
     ],
-    "三角面": 11188
+    "triangles": 11188
   },
-  "08_颈俯仰": {
+  "08_neck-pitch": {
     "body": "neck_pitch",
-    "源STL": [
+    "source_STL": [
       "neck_pitch",
       "seeed_bearing__configuration__22x16x4"
     ],
-    "三角面": 28090
+    "triangles": 28090
   },
-  "09_头yaw-roll": {
+  "09_head-yaw-roll": {
     "body": "yaw_roll_motion",
-    "源STL": [
+    "source_STL": [
       "yaw_roll_motion",
       "xl330",
       "seeed_bearing__configuration__22x16x4",
       "seeed_bearing__configuration__22x16x4"
     ],
-    "三角面": 51880
+    "triangles": 51880
   },
-  "10_头部总成": {
+  "10_head-assembly": {
     "body": "jaw_soft",
-    "源STL": [
+    "source_STL": [
       "lens",
       "face_part",
       "xl330",
@@ -110,53 +110,53 @@
       "pcb__raspberry_pi_zero_2_w",
       "speaker"
     ],
-    "三角面": 159540
+    "triangles": 159540
   },
-  "11_右髋yaw-roll": {
+  "11_right-hip-yaw-roll": {
     "body": "bearing_roll",
-    "源STL": [
+    "source_STL": [
       "yaw2roll",
       "xl330",
       "bearing_roll",
       "seeed_bearing__configuration__22x16x4"
     ],
-    "三角面": 39920
+    "triangles": 39920
   },
-  "12_右髋roll": {
+  "12_right-hip-roll": {
     "body": "hip_l_2",
-    "源STL": [
+    "source_STL": [
       "hip_l",
       "seeed_bearing__configuration__22x16x4"
     ],
-    "三角面": 41940
+    "triangles": 41940
   },
-  "13_右大腿": {
+  "13_right-thigh": {
     "body": "upper_leg_right",
-    "源STL": [
+    "source_STL": [
       "xl330",
       "seeed_bearing__configuration__22x16x4",
       "upper_leg_rigidity_plate",
       "upper_leg_right",
       "xl330"
     ],
-    "三角面": 45072
+    "triangles": 45072
   },
-  "14_右小腿": {
+  "14_right-shin": {
     "body": "leg_2",
-    "源STL": [
+    "source_STL": [
       "xl330",
       "leg"
     ],
-    "三角面": 18902
+    "triangles": 18902
   },
-  "15_右踝脚": {
+  "15_right-ankle-foot": {
     "body": "ankle_right",
-    "源STL": [
+    "source_STL": [
       "ankle_right",
       "sole_right",
       "seeed_bearing__configuration_default",
       "foot_right"
     ],
-    "三角面": 61748
+    "triangles": 61748
   }
 }
