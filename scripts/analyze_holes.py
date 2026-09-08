@@ -16,15 +16,15 @@ import numpy as np
 from scipy.sparse import coo_matrix
 from scipy.sparse.csgraph import connected_components
 
-SMOOTH_DEG   = 35.0     # 二面角阈值：小于此角认为同属一个光滑曲面
-AXIS_TOL     = 0.25     # |法向·轴| 上限，超过说明不是圆柱面
-FIT_TOL      = 0.03     # 圆拟合相对残差上限
-MIN_FACES    = 6        # 圆柱面至少要有这么多三角面
-MIN_DIA, MAX_DIA = 0.8, 14.0   # 只关心紧固件量级的孔 (mm)
+SMOOTH_DEG   = 35.0     # Dihedral angle threshold: below this angle, faces belong to same smooth surface
+AXIS_TOL     = 0.25     # |normal·axis| upper limit, exceeding indicates non-cylindrical surface
+FIT_TOL      = 0.03     # Circle fit relative residual upper limit
+MIN_FACES    = 6        # Cylindrical surface must have at least this many triangular faces
+MIN_DIA, MAX_DIA = 0.8, 14.0   # Only care about fastener-scale holes (mm)
 
 
 def read_stl_mm(path):
-    """读二进制 STL，返回 (N,3,3) 顶点数组，单位 mm。"""
+    """Read binary STL, return (N,3,3) vertex array in mm."""
     b = open(path, 'rb').read()
     n = struct.unpack('<I', b[80:84])[0]
     a = np.frombuffer(b, dtype=np.uint8, count=n * 50, offset=84).reshape(n, 50)
@@ -33,7 +33,7 @@ def read_stl_mm(path):
 
 
 def weld(tris):
-    """合并重复顶点，返回 (顶点表, 面索引)。"""
+    """Merge duplicate vertices, return (vertex table, face indices)."""
     P = tris.reshape(-1, 3)
     key = np.round(P, 4)
     _, idx, inv = np.unique(key, axis=0, return_index=True, return_inverse=True)
@@ -47,14 +47,14 @@ def face_normals(V, F):
 
 
 def smooth_patches(V, F, N):
-    """按二面角切割，把面片聚成光滑曲面片。"""
+    """Split by dihedral angle, cluster faces into smooth surface patches."""
     nf = len(F)
     e = np.concatenate([F[:, [0, 1]], F[:, [1, 2]], F[:, [2, 0]]])
     e = np.sort(e, axis=1)
     fid = np.tile(np.arange(nf), 3)
     order = np.lexsort((e[:, 1], e[:, 0]))
     e, fid = e[order], fid[order]
-    same = np.all(e[1:] == e[:-1], axis=1)          # 相邻两条记录是同一条边
+    same = np.all(e[1:] == e[:-1], axis=1)          # Adjacent records are the same edge
     f1, f2 = fid[:-1][same], fid[1:][same]
     if len(f1) == 0:
         return np.zeros(nf, int), 1
@@ -65,7 +65,7 @@ def smooth_patches(V, F, N):
 
 
 def fit_circle(xy):
-    """Kasa 代数圆拟合，返回 (圆心, 半径, 相对残差)。"""
+    """Kasa algebraic circle fit, return (center, radius, relative residual)."""
     x, y = xy[:, 0], xy[:, 1]
     A = np.c_[x, y, np.ones(len(x))]
     b = x ** 2 + y ** 2
@@ -93,7 +93,7 @@ def analyze(path):
         if len(sel) < MIN_FACES:
             continue
         n = N[sel]
-        # 圆柱面的法向都垂直于轴 -> 轴是法向协方差矩阵的最小特征向量
+        # Cylinder normals are all perpendicular to axis -> axis is min eigenvector of normal covariance matrix
         w, vec = np.linalg.eigh(n.T @ n)
         axis = vec[:, 0]
         if np.abs(n @ axis).max() > AXIS_TOL:
@@ -111,21 +111,21 @@ def analyze(path):
         dia = 2 * r
         if not (MIN_DIA <= dia <= MAX_DIA):
             continue
-        # 判断凹凸：法向指向轴心 = 孔
+        # Determine concavity: normals pointing toward axis = hole
         cen3 = c[0] * e1 + c[1] * e2
         fc = V[F[sel]].mean(1)
         radial = fc - (cen3 + np.outer(fc @ axis, axis))
         radial /= np.maximum(np.linalg.norm(radial, axis=1, keepdims=True), 1e-9)
         inward = (np.einsum('ij,ij->i', n, radial) < 0).mean()
         if inward < 0.7:
-            continue                                  # 凸出去的是轴/凸台，不是孔
+            continue                                  # Protruding features are shafts/bosses, not holes
         ang = np.arctan2(xy[:, 1] - c[1], xy[:, 0] - c[0])
         cover = np.degrees(np.ptp(np.sort(ang)))
         depth = float(np.ptp(pts @ axis))
-        holes.append({'直径mm': round(float(dia), 3),
-                      '深度mm': round(depth, 2),
-                      '包角deg': round(float(cover)),
-                      '面数': int(len(sel))})
+        holes.append({'diameter_mm': round(float(dia), 3),
+                      'depth_mm': round(depth, 2),
+                      'coverage_deg': round(float(cover)),
+                      'face_count': int(len(sel))})
     return holes
 
 
@@ -145,10 +145,10 @@ def main():
             continue
         result[name] = h
         if h:
-            print(f"  {name:42s} {len(h):3d} 个孔")
+            print(f"  {name:42s} {len(h):3d} holes")
     os.makedirs(os.path.dirname(out) or ".", exist_ok=True)
     json.dump(result, open(out, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
-    print("\n写入", out)
+    print("\nWrote", out)
 
 
 if __name__ == '__main__':

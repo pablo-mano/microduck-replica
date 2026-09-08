@@ -78,7 +78,7 @@ Whether the reverse-engineered numbers hold up on real parts:
 
 ### 2026-09-02 · First printed parts
 
-![First printed parts](build-log/photos/2026-09-02-首批打印件.jpg)
+![First printed parts](build-log/photos/2026-09-02-first-printed-parts.jpg)
 
 Printed and partly assembled:
 

@@ -72,10 +72,10 @@ the bottom. All 23 nets connected, **DRC clean**, every IC power pin has a 100nF
 2.3 mm. Still **never fabricated or validated on hardware**.
 
 **[Design notes · review points · audit](hardware/imu_to_dxl/)**　·　
-[Schematic PDF](hardware/imu_to_dxl/imu_to_dxl-原理图.pdf)　·　
+[Schematic PDF](hardware/imu_to_dxl/imu_to_dxl-schematic.pdf)　·　
 [PCB PDF](hardware/imu_to_dxl/imu_to_dxl-PCB.pdf)　·　
 [3D STEP](hardware/imu_to_dxl/imu_to_dxl-PCB.step)　·　
-[Netlist](hardware/imu_to_dxl/imu_to_dxl-接线表.md)　·　
+[Netlist](hardware/imu_to_dxl/netlist.md)　·　
 [EasyEDA project](hardware/imu_to_dxl/imu_to_dxl.eprj2)
 
 </td>
@@ -83,7 +83,7 @@ the bottom. All 23 nets connected, **DRC clean**, every IC power pin has a 100nF
 
 ### 🔨 Mechanical · first printed parts
 
-<a href="BUILD-LOG.en.md"><img src="build-log/photos/2026-09-02-首批打印件.jpg" alt="First printed parts"></a>
+<a href="BUILD-LOG.md"><img src="build-log/photos/2026-09-02-first-printed-parts.jpg" alt="First printed parts"></a>
 
 **Someone is actually building this.** The head shell, trunk shell, leg structure and feet
 are printed, and **the M2 screws go into the leg parts** — the conclusion in
@@ -203,7 +203,7 @@ browser and drop an STL in.
 ## Electronics, Reverse-Engineered from the Runtime
 
 <div align="center">
-  <img src="assets/hw/01-物理布局.png" alt="Microduck electronics overview: where each board sits" width="880">
+  <img src="assets/hw/01-physical-layout.png" alt="Microduck electronics overview: where each board sits" width="880">
   <br>
   <sub><b>Physical layout of the five modules.</b> Dashed grey = physical region, solid = module,
   dashed red = mounted <b>outside</b> the shell.<br>
@@ -211,7 +211,7 @@ browser and drop an STL in.
   The one thing people get wrong: <b>the compute board, the HAT and the camera are all in the head</b> —
   the camera sits ~13 mm from the board centre with no joint between them,<br>
   so the MIPI ribbon never crosses the neck. What does cross it is the servo bus and the power line.<br>
-  <a href="docs/硬件入门.md">Full diagram set (Chinese) →</a>　·　<a href="assets/hw/Microduck硬件图集.pdf">Download PDF (7 diagrams, A3)</a></sub>
+  <a href="docs/hardware-primer.md">Full diagram set →</a>　·　<a href="assets/hw/Microduck-hardware-diagrams.pdf">Download PDF (7 diagrams, A3)</a></sub>
 </div>
 
 
