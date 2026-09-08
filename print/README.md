@@ -1,101 +1,63 @@
-# 3D 打印件
+# 3D-Printable Parts
 
-> 🛒 耗材、紧固件、热熔螺母与压头的采购链接见 [机械采购清单](../docs/机械采购清单.md)。
+[简体中文](README.md) · **English**
 
-**简体中文** · [English](README.en.md)
+Every STL for the whole robot, split into **print these** and **buy these**, with bilingual filenames.
 
-整机全部 STL，按「**要打印**」和「**买现成的**」分好类，文件名中英双语。
-
-| 目录 | 数量 | 说明 |
+| Directory | Count | What it is |
 |---|---|---|
-| [`打印件/`](打印件/) | **30 种 / 41 件** | 步行装配体需要的结构件。**有 9 种要打多份，务必看下面的数量表** |
-| [`变体-轮滑/`](变体-轮滑/) | 5 种 / 15 件 | 轮滑功能的替换件，不做轮滑就不用打 |
-| [`标准件-无需打印/`](标准件-无需打印/) | 8 | 舵机、轴承、电池、电路板的模型，**仅供对位和干涉检查** |
-| [`上游已删除/`](上游已删除/) | 2 | 任何装配体都不引用，上游 2026-09-01 已移除。存档用 |
+| [`打印件/`](打印件/) (print) | **37** | Structural parts you print yourself |
+| [`标准件-无需打印/`](标准件-无需打印/) (do not print) | **9** | Models of bought parts — servos, bearings, battery, PCBs. **For fit and interference checking only** |
 
-## ⚠️ 打几个：8 种零件要打多份
+> These are **individual parts**, for printing.
+> For **assembly relationships** see [`../cad/`](../cad/) — 16 sub-assemblies merged along the kinematic tree.
 
-数量取自上游 `robot_walk.xml` 的 geom 引用计数，不是估的。
-
-| 零件 | 数量 |
-|---|---|
-| `leg_腿部` | **×4** |
-| `hip_l_髋部左` | ×2 |
-| `neck_颈部` | ×2 |
-| `power_support_电源支架` | ×2 |
-| `sole_left_左脚底` | ×2 |
-| `sole_right_右脚底` | ×2 |
-| `upper_leg_rigidity_plate_上腿加固板` | ×2 |
-| `yaw2roll_偏航转横滚` | ×2 |
-| `bearing_roll_横滚轴承压盖` | ×2 |
-| 其余 21 种 | 各 ×1 |
-
-**轮滑变体**：`tire_轮胎` **×8**、`rim_轮辋` **×4**、`roller_blade` ×2、`ankle_l_v1`/`ankle_r_v1` 各 ×1。
-
-> ⚠️ 轮滑脚踝比标准脚踝**高 10 mm**（46.5 vs 36.5），两套不能混用。
-
-完整物料清单（含舵机、轴承、螺丝、电子件）见 [`../BOM.md`](../BOM.md)。
-
-## 文件名规则
+## Filename convention
 
 ```
 upper_leg_left_左上腿.stl
-└──── 上游原名 ────┘└─中文─┘
+└─ upstream name ─┘└ zh ─┘
 ```
 
-前半段是上游 `microduck_rl` 里的原始文件名，方便和 MJCF、源码对照；后半段是中文，方便直接看懂是什么件。
+The first half is the original filename from `microduck_rl`, so it cross-references the MJCF and the
+source; the second half is Chinese, so a Chinese-speaking builder can tell what it is at a glance.
 
-## 与上游的差异
+## Differences from upstream
 
-抓取时上游 `robot/microduck/assets` 有 **47 个 STL**，这里保留 **46 个**。
+Upstream `microduck_rl` ships **53 STLs**. This directory carries **46**.
 
-**去掉的 1 个重复**：右上腿在上游有 `upper_leg_right` 与 `right_upper_leg` 两个文件，
-面数（12250）、包围盒、质心完全一致 —— 同一几何体的两次导出，只保留 `upper_leg_right`。
+**The 7 left out** are XL330 test-bench fixtures, not robot parts:
 
-**分类调整**：轮滑专用件移入 `变体-轮滑/`；两个任何 MJCF 都不引用、且上游已删除的躯干壳
-移入 `上游已删除/`。
+```
+bench_holder  weight  spacer  axis  arm  part_1 … part_5
+```
 
-> 上游的 XL330 台架测试夹具（`bench_holder`、`weight`、`spacer`、`axis`、`arm`、`part_1..5`）
-> 在另一个目录 `robot/xl330_test_bench/assets`，不属于机器人，本来就不在这 47 个里。
+**One duplicate removed**: the same left upper leg ships upstream under two names
+(`upper_leg_left` and `left_upper_leg`), byte-for-byte identical. Only
+`upper_leg_left_左上腿.stl` is kept here.
 
-## 打印建议
+> ⚠️ **Do not mistake `upper_leg_left` and `upper_leg_right` for the same part** — they are
+> different geometry. You need both.
 
-本仓库暂无官方打印参数（上游没有公开）。已知的实测信息见 [`../构建日志.md`](../构建日志.md)。
+## Printing notes
 
-几个从结构上能看出来的点：
+No official print settings exist (upstream never published any). Measured findings so far are in
+[`../BUILD-LOG.en.md`](../BUILD-LOG.en.md).
 
-- **头壳、躯干壳**是外观件，建议层高 0.12–0.16 mm
-- **腿部结构件**承力，建议加大壁厚和填充
-- **`soft_mouth_top` / `jaw_soft`** 名字带 soft，原版应为软性材料（TPU 类）
-- **`tire_轮胎`** 同理，轮滑用的胎，硬材料打出来会打滑
-- 打印件上的 M2 孔位建议用**热熔螺母**而不是直接攻丝，螺丝清单见 [`../docs/紧固件反推.md`](../docs/紧固件反推.md)
+A few things the geometry itself tells you:
 
-## 授权
+- **Head and trunk shells** are cosmetic — 0.12–0.16 mm layers
+- **Leg structural parts** carry load — increase perimeters and infill
+- **`soft_mouth_top` / `jaw_soft`** are named *soft*; the originals are presumably a flexible
+  material (TPU family)
+- **`tire_轮胎`** likewise — a roller-skating tyre printed in rigid filament will simply slip
+- Use **heat-set inserts** for the M2 holes rather than tapping the plastic. Screw list:
+  [`../docs/fastener-reconstruction.en.md`](../docs/fastener-reconstruction.en.md)
 
-这些 STL 是上游 `pollen-robotics/microduck_rl` 公开发布文件的**衍生作品**（重命名与分类整理），
-遵循与上游一致的 **CC BY-NC-SA 4.0**：署名、相同方式共享、非商业使用。
+## Licence
 
-详见 [`../NOTICE.md`](../NOTICE.md)。
+These STLs are a **derivative** (renaming and sorting) of files published by upstream
+`pollen-robotics/microduck_rl`, and carry the same **CC BY-NC-SA 4.0** terms: attribution,
+share-alike, non-commercial.
 
----
-
-## 勘误（2026-09-04）
-
-`bearing_roll` 此前被归入 `标准件-无需打印/`（当成买现成的轴承），**这是错的**。判据：
-
-1. **几何** —— 实测 **23 × 3 × 40 mm**、带 Ø≈18 mm 中心孔的平板，体积 625 mm³（填充率 23%）。
-   没有任何标准轴承是这个形状；两颗真轴承实测是 22.0/**16.0**/4.0 与 15.0/**10.0**/3.0 的回转体。
-2. **出处** —— `assets/*.part` 的 Onshape `elementId`：`bearing_roll` 与 `trunk_base`、`yaw2roll`、
-   `left_shell`、`right_shell`、`power_support`、`neck` 同属 `d6fcdccc8b25aaa256e7e213`
-   （自建打印件的躯干 Part Studio）；两颗真轴承在 `92eaf48a756ec816309fc756`，
-   带配置串 `..._22x16x4` / `..._Default`，是典型标准件配置库。
-3. **装配** —— 它与 `yaw2roll` 在同一个 body、同一个 `pos`，quat 只差整体符号（同一旋转），
-   是贴在 yaw2roll 侧面、往下多伸 19.5 mm 的一块盖板 —— 功能上是 hip_roll 轴那颗
-   Ø22 轴承的**压盖/挡板**（Ø18 孔小于 Ø22 外径，正好挡住外圈）。
-
-原中译「轴承滚轮」也错了 —— 既不是轴承也不是滚轮，已改为「横滚轴承压盖」。
-打印件计数因此 **29 种 / 39 件 → 30 种 / 41 件**，标准件 **9 → 8**。
-
-> 另注：`robot_walk.xml:264` 里右腿 hip_yaw 那个 link 被 onshape-to-robot 命名成
-> `<body name="bearing_roll">`，但它内部的可视件是 `yaw2roll_2` —— 这只是链接命名巧合，
-> 与零件性质无关。
+See [`../NOTICE.md`](../NOTICE.md).

@@ -178,8 +178,8 @@ Every individual STL, split into print-these and buy-these, bilingual filenames 
 
 | Directory | Count |
 |---|---|
-| [`print/打印件/`](print/打印件/) | **30 types / 41 pieces** of structural parts |
-| [`print/标准件-无需打印/`](print/标准件-无需打印/) | **9** bought-part models (for fit checking) |
+| [`print/printables/`](print/printables/) | **30 types / 41 pieces** of structural parts |
+| [`print/commercial-parts/`](print/commercial-parts/) | **9** bought-part models (for fit checking) |
 
 > Upstream's 7 test-bench fixtures and 1 duplicate are excluded. Printing notes:
 > [`print/README.en.md`](print/README.en.md).
